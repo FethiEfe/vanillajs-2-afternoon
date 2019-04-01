@@ -135,7 +135,6 @@
             <polygon points="725,10 755,10 755,100 725,100 725,10" class="black pianoKey" data-key="57" />
             <polygon points="770,10 800,10 800,100 770,100 770,10" class="black pianoKey" data-key="48" />
         </svg>
-
         <audio data-key="97" src="./pianoSounds/middle_c.mp3"></audio>
         <audio data-key="49" src="./pianoSounds/mid_c_sharp.mp3"></audio>
         <audio data-key="115" src="./pianoSounds/middle_d.mp3"></audio>
@@ -165,6 +164,23 @@
 </body>
 
 <script>
+   
+    
+   window.addEventListener("keypress", function(event) {
+    const tone = document.querySelector('audio[data-key="' + event.keyCode + '"]');
+    if (!tone) return;                 
+    const pianoKey = document.querySelector('.pianoKey[data-key="' + event.keyCode + '"]');
+    tone.currentTime = 0;
+    pianoKey.classList.add("pressed");
+    tone.play();
+    setTimeout(function() {
+     pianoKey.classList.remove("pressed");
+    },300);
+
+    });
+
+
+
 </script>
 
 </html>
